@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yellow Truck Menu</title>
+    <style>
+        /* Global Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* Body Styling */
+        body { font-family: Arial, sans-serif; background-color: #f8f8f8; color: #333; }
+
+        /* Header Styling */
+        header {
+            background-color: #4a90e2;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+
+        /* Container Styling */
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #4a90e2;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Menu Item Styling */
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            background-color: #fff;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-item h3 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        .menu-item p {
+            color: #777;
+            font-size: 1em;
+        }
+
+        /* Add to Cart Button */
+        .add-to-cart {
+            background-color: #4a90e2;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            font-size: 1.1em;
+        }
+
+        .add-to-cart:hover {
+            background-color: #357abd;
+            transform: scale(1.05);
+        }
+
+        /* Cart Link */
+        #cart-link {
+            display: block;
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.2em;
+            color: #4a90e2;
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        #cart-link:hover {
+            color: #357abd;
+        }
+
+        /* Floating Cart Icon */
+        #cart-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4a90e2;
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        #cart-icon:hover {
+            background-color: #357abd;
+            transform: scale(1.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .add-to-cart {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Yellow Truck Menu</h1>
+        <p>Discover our mouth-watering artisan sausages and refreshing drinks</p>
+    </header>
+
+    <!-- Menu Content -->
+    <div class="container">
+        <h2>Trending Today</h2>
+
+        <!-- Beer Bratwurst -->
+        <div class="menu-item">
+            <div>
+                <h3>Beer Bratwurst - $8.99</h3>
+                <p>Authentic German Bratwurst served with house-made sauerkraut and coarse-ground mustard.</p>
+            </div>
+            <button class="add-to-cart" onclick="addToCart('Beer Bratwurst', 8.99)">Add to Cart</button>
+        </div>
+
+        <!-- Lamb Sausage -->
+        <div class="menu-item">
+            <div>
+                <h3>Lamb Sausage - $9.99</h3>
+                <p>Locally sourced lamb sausage with grilled red onion, feta, fresh oregano, and house pickles.</p>
+            </div>
+            <button class="add-to-cart" onclick="addToCart('Lamb Sausage', 9.99)">Add to Cart</button>
+        </div>
+
+        <!-- White German Sausage -->
+        <div class="menu-item">
+            <div>
+                <h3>White German Sausage - $12.99</h3>
+            </div>
+            <button class="add-to-cart" onclick="addToCart('White German Sausage', 12.99)">Add to Cart</button>
+        </div>
+
+        <h2>Available Drinks</h2>
+
+        <!-- Ginger Ale -->
+        <div class="menu-item">
+            <div>
+                <h3>Ginger Ale - $1.99</h3>
+            </div>
+            <button class="add-to-cart" onclick="addToCart('Ginger Ale', 1.99)">Add to Cart</button>
+        </div>
+
+        <!-- Water -->
+        <div class="menu-item">
+            <div>
+                <h3>Water - $1.50</h3>
+            </div>
+            <button class="add-to-cart" onclick="addToCart('Water', 1.50)">Add to Cart</button>
+        </div>
+
+        <!-- Cart Link -->
+        <a href="cart.html" id="cart-link">Go to Cart</a>
+    </div>
+
+    <!-- Floating Cart Icon -->
+    <div id="cart-icon" onclick="window.location.href='cart.html';">
+        🛒
+    </div>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function addToCart(itemName, itemPrice) {
+            const item = { name: itemName, price: itemPrice };
+            cart.push(item);
+            alert(itemName + ' has been added to the cart!');
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartIcon();
+        }
+
+        function updateCartIcon() {
+            const cartIcon = document.getElementById('cart-icon');
+            const cartCount = cart.length;
+            cartIcon.title = `You have ${cartCount} items in your cart`;
+            if (cartCount > 0) {
+                cartIcon.style.backgroundColor = '#d2691e';
+            } else {
+                cartIcon.style.backgroundColor = '#4a90e2';
+            }
+        }
+
+        updateCartIcon(); // Initial cart update
+    </script>
+
+</body>
+</html>

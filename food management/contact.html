@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        /* Global Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* Body Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #f8f8f8, #f0f0f0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        header {
+            background-color: #a0522d;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            border-radius: 8px 8px 0 0;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        /* Contact Form Styling */
+        .container {
+            max-width: 600px;
+            width: 100%;
+            padding: 30px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            color: #444;
+            margin-bottom: 5px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #a0522d;
+            background-color: #fff;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #aaa;
+        }
+
+        .btn {
+            background-color: #a0522d;
+            color: white;
+            padding: 12px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.2em;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #8b4513;
+        }
+
+        /* Success Popup Styling */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #4CAF50;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: bold;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        .popup.show {
+            display: block;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Contact Us</h1>
+    </header>
+
+    <!-- Contact Form -->
+    <div class="container">
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Your Message</label>
+                <textarea id="message" rows="5" placeholder="Write your message here..." required></textarea>
+            </div>
+            <button type="button" class="btn" onclick="submitMessage()">Send Message</button>
+        </form>
+    </div>
+
+    <!-- Success Popup -->
+    <div class="popup" id="contactPopup">
+        <p>Your message has been sent!</p>
+    </div>
+
+    <script>
+        // Show the success popup when the message is sent
+        function submitMessage() {
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("message").value;
+
+            if (email && message) {
+                const popup = document.getElementById("contactPopup");
+                popup.classList.add("show");
+                setTimeout(() => popup.classList.remove("show"), 2000);
+
+                // Clear the form fields after submission
+                document.getElementById("contactForm").reset();
+            } else {
+                alert("Please fill in both fields!");
+            }
+        }
+    </script>
+</body>
+</html>

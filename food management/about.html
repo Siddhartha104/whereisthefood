@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Where is My Food</title>
+    <style>
+        /* Reset and Base Styling */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; color: #333; background: #f9f9f9; }
+        
+        /* Header Styling */
+        header {
+            background: linear-gradient(135deg, #d2691e, #a0522d);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            background-image: url('https://source.unsplash.com/1600x900/?food,street-food');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Container Styling */
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        h2 {
+            color: #d2691e;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: #d2691e;
+            margin-top: 6px;
+            border-radius: 2px;
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        /* Interactive Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .highlight-box {
+            background: #f0f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            transition: background 0.3s ease;
+        }
+
+        .highlight-box:hover {
+            background: #f7e0d6;
+        }
+
+        /* Footer Styling */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        /* Keyframes for Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header with Parallax Effect -->
+    <header>
+        <h1>About Us</h1>
+        <p>Your guide to discovering the best street food experiences.</p>
+    </header>
+
+    <!-- Content Section with Interactive Elements -->
+    <div class="container fade-in" id="content">
+        <h2>Our Mission</h2>
+        <p>At <strong>Where is My Food</strong>, we’re passionate about helping you discover and enjoy diverse and high-quality street food. Our mission is to bring together street food enthusiasts and vendors, making delicious food accessible to everyone.</p>
+
+        <div class="highlight-box fade-in">
+            <h2>Our Values</h2>
+            <p>We believe in supporting local vendors, promoting sustainable practices, and celebrating the diversity of food cultures from around the world.</p>
+        </div>
+
+        <h2>Our Vision</h2>
+        <p>Our vision is to be the go-to platform for anyone seeking memorable street food experiences. We aim to connect food lovers with vendors, creating a vibrant community that appreciates unique flavors and high-quality food.</p>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2023 Where is My Food. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Scroll Animation for Fade-in Effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeIns = document.querySelectorAll('.fade-in');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            });
+            fadeIns.forEach(fadeIn => observer.observe(fadeIn));
+        });
+    </script>
+</body>
+</html>

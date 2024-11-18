@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        /* Background and Body Styles */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #36d1dc, #5b86e5);
+            overflow: hidden;
+        }
+
+        /* Signup Container Styles */
+        .signup-container {
+            background: #fff;
+            padding: 2em;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            animation: slideIn 0.6s ease;
+            width: 300px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        /* Container Slide-In Animation */
+        @keyframes slideIn {
+            from {
+                transform: translateY(-30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Title Style */
+        h2 {
+            color: #333;
+            margin-bottom: 1em;
+        }
+
+        /* Input Styles */
+        input {
+            width: 100%;
+            padding: 0.8em;
+            margin: 0.5em 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input:focus {
+            border-color: #36d1dc;
+            box-shadow: 0 0 10px rgba(54, 209, 220, 0.2);
+        }
+
+        /* Sign Up Button Styles */
+        .signup-btn {
+            background: #36d1dc;
+            color: #fff;
+            padding: 0.8em;
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .signup-btn:hover {
+            background: #5b86e5;
+            transform: scale(1.05);
+        }
+
+        .signup-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Link to Login Page */
+        .login-link {
+            margin-top: 1em;
+            display: block;
+            color: #36d1dc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .login-link:hover {
+            text-decoration: underline;
+            color: #5b86e5;
+        }
+
+        /* Shake animation for invalid input */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+        }
+
+        .shake {
+            animation: shake 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="signup-container" id="signupContainer">
+        <h2>Sign Up</h2>
+        <input type="text" id="signupUsername" placeholder="Username" required>
+        <input type="password" id="signupPassword" placeholder="Password" required>
+        <button class="signup-btn" onclick="signup()">Sign Up</button>
+        <a href="login.html" class="login-link">Already have an account? Login</a>
+    </div>
+
+    <script>
+        function signup() {
+            const username = document.getElementById("signupUsername").value;
+            const password = document.getElementById("signupPassword").value;
+            const signupContainer = document.getElementById("signupContainer");
+
+            if (!username || !password) {
+                alert("Please fill in all fields.");
+                shakeContainer();
+                return;
+            }
+
+            if (localStorage.getItem(username)) {
+                alert("Username already exists!");
+                shakeContainer();
+            } else {
+                const user = { username: username, password: password };
+                localStorage.setItem(username, JSON.stringify(user));
+                alert("Sign up successful!");
+                localStorage.setItem("currentUser", username); // Save current user for session
+                window.location.href = "login.html"; // Redirect to login page
+            }
+        }
+
+        // Add shake animation to container if there's an error
+        function shakeContainer() {
+            const signupContainer = document.getElementById("signupContainer");
+            signupContainer.classList.add("shake");
+            setTimeout(() => signupContainer.classList.remove("shake"), 300);
+        }
+
+        // Additional pop-in effect on load
+        document.addEventListener("DOMContentLoaded", () => {
+            const signupContainer = document.getElementById("signupContainer");
+            signupContainer.style.transform = "scale(1.05)";
+            signupContainer.style.boxShadow = "0 15px 25px rgba(0, 0, 0, 0.3)";
+            
+            setTimeout(() => {
+                signupContainer.style.transform = "scale(1)";
+                signupContainer.style.boxShadow = "0 10px 20px rgba(0, 0, 0, 0.2)";
+            }, 500);
+        });
+    </script>
+
+</body>
+</html>

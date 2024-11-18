@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Where is My Food</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #36d1dc, #5b86e5);
+        }
+
+        .login-container {
+            background: #fff;
+            padding: 2em;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 300px;
+            animation: fadeIn 0.5s ease;
+            transition: transform 0.5s, box-shadow 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 1em;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.8em;
+            margin: 0.5em 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: #36d1dc;
+        }
+
+        .login-btn {
+            background: #36d1dc;
+            color: #fff;
+            padding: 0.8em;
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .login-btn:hover {
+            background: #5b86e5;
+            transform: scale(1.05);
+        }
+
+        .signup-link {
+            margin-top: 1em;
+            display: block;
+            color: #36d1dc;
+            text-decoration: none;
+        }
+
+        .signup-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container" id="loginContainer">
+        <h2>Login</h2>
+        <input type="text" id="loginUsername" placeholder="Username" required>
+        <input type="password" id="loginPassword" placeholder="Password" required>
+        <button class="login-btn" onclick="login()">Login</button>
+        <a href="signup.html" class="signup-link">Don't have an account? Sign Up</a>
+    </div>
+
+    <script>
+        // Login function to handle user login logic
+        function login() {
+            const username = document.getElementById("loginUsername").value;
+            const password = document.getElementById("loginPassword").value;
+
+            const storedUser = JSON.parse(localStorage.getItem(username));
+
+            if (storedUser && storedUser.password === password) {
+                alert("Login successful!");
+                localStorage.setItem("currentUser", username); // Save the current user for session
+                window.location.href = "home.html"; // Redirect to home page
+            } else {
+                alert("Invalid username or password!");
+            }
+        }
+
+        // Adding animations for focus and hover effects
+        document.addEventListener("DOMContentLoaded", () => {
+            const loginContainer = document.getElementById("loginContainer");
+
+            // Pop-in animation effect on page load
+            loginContainer.style.transform = "scale(1.05)";
+            loginContainer.style.boxShadow = "0 15px 25px rgba(0, 0, 0, 0.3)";
+            
+            setTimeout(() => {
+                loginContainer.style.transform = "scale(1)";
+                loginContainer.style.boxShadow = "0 10px 20px rgba(0, 0, 0, 0.2)";
+            }, 500);
+        });
+    </script>
+
+</body>
+</html>

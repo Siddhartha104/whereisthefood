@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vietnamese Street Food Menu</title>
+    <style>
+        /* Resetting and Basic Styling */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background-color: #f7f7f7; color: #333; line-height: 1.6; }
+
+        /* Header Styling */
+        header {
+            background: linear-gradient(135deg, #a0522d, #d2691e);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        header h1 {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* Container Styling */
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #a0522d;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Menu Item Styling */
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            background-color: #fff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-item h3 {
+            margin: 0;
+            font-size: 1.5em;
+            color: #333;
+        }
+
+        .menu-item p {
+            color: #777;
+            font-size: 1em;
+        }
+
+        /* Button Styling */
+        .add-to-cart {
+            background-color: #a0522d;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            font-size: 1.1em;
+        }
+
+        .add-to-cart:hover {
+            background-color: #8b4513;
+            transform: scale(1.05);
+        }
+
+        /* Cart Link */
+        #cart-link {
+            display: block;
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.2em;
+            color: #a0522d;
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        #cart-link:hover {
+            color: #d2691e;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .add-to-cart {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Vietnamese Street Food Menu</h1>
+        <p>Explore the best of Vietnamese street food right here!</p>
+    </header>
+
+    <!-- Menu Content -->
+    <div class="container">
+        <h2>Our Amazing Food</h2>
+
+        <!-- Pork and Shrimp Banh Xeo -->
+        <div class="menu-item">
+            <div>
+                <h3>Pork and Shrimp Banh Xeo - $8.99</h3>
+                <p>A crispy crepe filled with pork, shrimp, bean sprouts, and fresh herbs.</p>
+            </div>
+            <button class="add-to-cart" onclick="addToCart('Pork and Shrimp Banh Xeo', 8.99)">Add to Cart</button>
+        </div>
+
+        <!-- Banh Mi -->
+        <div class="menu-item">
+            <div>
+                <h3>Banh Mi - $10.99</h3>
+                <p>A crispy baguette with pickled veggies, cilantro, pork, pate, sausage, and cheese.</p>
+            </div>
+            <button class="add-to-cart" onclick="addToCart('Banh Mi', 10.99)">Add to Cart</button>
+        </div>
+
+        <!-- Pho Ga -->
+        <div class="menu-item">
+            <div>
+                <h3>Pho Ga - $12.99</h3>
+                <p>Daily-made chef's broth with fresh rice noodles, herbs, and chicken.</p>
+            </div>
+            <button class="add-to-cart" onclick="addToCart('Pho Ga', 12.99)">Add to Cart</button>
+        </div>
+
+        <!-- Available Drinks -->
+        <h2>Available Drinks</h2>
+
+        <!-- Coke -->
+        <div class="menu-item">
+            <div>
+                <h3>Coke - $1.99</h3>
+            </div>
+            <button class="add-to-cart" onclick="addToCart('Coke', 1.99)">Add to Cart</button>
+        </div>
+
+        <!-- Diet Coke -->
+        <div class="menu-item">
+            <div>
+                <h3>Diet Coke - $1.99</h3>
+            </div>
+            <button class="add-to-cart" onclick="addToCart('Diet Coke', 1.99)">Add to Cart</button>
+        </div>
+
+        <!-- Cart Link -->
+        <a href="cart.html" id="cart-link">Go to Cart</a>
+    </div>
+
+    <script>
+        let cart = [];
+
+        function addToCart(itemName, itemPrice) {
+            const item = { name: itemName, price: itemPrice };
+            cart.push(item);
+            alert(itemName + ' has been added to the cart!');
+            localStorage.setItem('cart', JSON.stringify(cart)); // Store cart in localStorage
+        }
+    </script>
+
+</body>
+</html>

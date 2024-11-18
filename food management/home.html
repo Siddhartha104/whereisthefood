@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Where is My Food</title>
+    <style>
+        /* General Reset and Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f8fa;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        /* Header Styling */
+        header {
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2em;
+            margin: 0;
+        }
+
+        /* Container Styling */
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+
+        h2 {
+            color: #ff7e5f;
+        }
+
+        /* Navigation Button Styling */
+        .nav-button {
+            display: inline-block;
+            background-color: #ff7e5f;
+            color: white;
+            padding: 12px 20px;
+            margin: 10px;
+            font-size: 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .nav-button:hover {
+            background-color: #feb47b;
+            transform: translateY(-3px);
+        }
+
+        /* Popup Styling */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ff7e5f;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            z-index: 1000;
+            animation: slideDown 0.5s ease;
+        }
+
+        .popup.show {
+            display: block;
+        }
+
+        /* Updates Section */
+        #updates {
+            background: #36d1dc;
+            color: white;
+            padding: 2em 0;
+            text-align: center;
+        }
+
+        #updates input[type="email"] {
+            padding: 0.8em;
+            border-radius: 8px;
+            border: none;
+            width: 250px;
+            margin: 10px 0;
+        }
+
+        #updates button {
+            background: white;
+            color: #36d1dc;
+            border: none;
+            padding: 0.8em 2em;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        #updates button:hover {
+            background: #ff7e5f;
+            color: white;
+        }
+
+        /* Blog Section Styling */
+        .blog-container {
+            background: white;
+            padding: 2em;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .blog-post {
+            margin-bottom: 1.5em;
+        }
+
+        .read-more {
+            color: #ff7e5f;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .read-more:hover {
+            color: #feb47b;
+        }
+
+        /* Rating and Review Section */
+        .review-container {
+            background: white;
+            padding: 2em;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin: 30px auto;
+            text-align: center;
+            max-width: 400px;
+        }
+
+        .rating {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 1em;
+        }
+
+        .rating label {
+            font-size: 30px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .rating input[type="radio"] {
+            display: none;
+        }
+
+        .rating input[type="radio"]:checked ~ label {
+            color: #ff7e5f;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 1em;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 1em;
+        }
+
+        .submit-btn {
+            background: #ff7e5f;
+            color: white;
+            padding: 0.8em 2em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #feb47b;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            from { transform: translate(-50%, -10px); opacity: 0; }
+            to { transform: translate(-50%, 0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- App Download Popup -->
+    <div class="popup" id="appPopup">
+        <p>Get our app! Click <a href="https://previewer.adalo.com/3e7cd6ca-56fb-4977-bc2c-7279ee76f556" style="color: white; text-decoration: underline;" target="_blank">here</a> to download.</p>
+    </div>
+
+    <header>
+        <h1>Where is My Food</h1>
+        <p>Discover and order from your favorite food trucks!</p>
+    </header>
+
+    <div class="container">
+        <h2>Explore Our Website</h2>
+
+        <!-- Navigation Buttons -->
+        <a href="shopnames.html" class="nav-button">Shop Names</a>
+        <a href="cart.html" class="nav-button">View Cart</a>
+        <a href="payment.html" class="nav-button">Payment</a>
+        <a href="contact.html" class="nav-button">Contact Us</a>
+        <a href="about.html" class="nav-button">About Us</a>
+        <a href="profile.html" class="nav-button">My Profile</a>
+    </div>
+
+    <!-- Review Section -->
+    <div class="review-container">
+        <h2>Leave a Rating & Review</h2>
+        <div class="rating">
+            <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
+            <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+            <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+            <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+            <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+        </div>
+        <textarea placeholder="Write your review here..." id="reviewText"></textarea>
+        <button class="submit-btn" onclick="submitReview()">Submit Review</button>
+    </div>
+
+    <!-- Blog Section -->
+    <div class="blog-container">
+        <h2>Latest Blog Posts</h2>
+        <div class="blog-post">
+            <h3>New Delicious Dishes You Must Try</h3>
+            <p>Our chefs have been busy creating new recipes that will tantalize your taste buds...</p>
+            <a href="full-blog-post.html" class="read-more">Read More</a>
+        </div>
+        <div class="blog-post">
+            <h3>Food Delivery Now Available Across The City</h3>
+            <p>Our food delivery service now reaches all parts of the city. Order your favorite dishes online...</p>
+            <a href="full-blog-post.html" class="read-more">Read More</a>
+        </div>
+    </div>
+
+    <!-- Updates Section -->
+    <section id="updates">
+        <h2>Stay Updated</h2>
+        <p>Subscribe to receive the latest news and promotions.</p>
+        <form id="newsletter-form" style="margin-top: 1em;">
+            <input type="email" id="email" placeholder="Enter your email">
+            <button type="submit">Subscribe</button>
+        </form>
+        <p id="subscription-message"></p>
+    </section>
+
+    <script>
+        // App Popup Display
+        document.addEventListener('DOMContentLoaded', () => {
+            const popup = document.getElementById("appPopup");
+            popup.classList.add("show");
+            setTimeout(() => popup.classList.remove("show"), 4000); // Hide after 4 seconds
+        });
+
+        // Submit Review Function
+        function submitReview() {
+            const rating = document.querySelector('input[name="rating"]:checked');
+            const reviewText = document.getElementById('reviewText').value;
+
+            if (rating && reviewText.trim()) {
+                alert('Thank you for your review!');
+                document.querySelector('input[name="rating"]:checked').checked = false;
+                document.getElementById('reviewText').value = '';
+            } else {
+                alert('Please provide a rating and a review!');
+            }
+        }
+
+        // Newsletter Subscription
+        document.getElementById('newsletter-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('subscription-message');
+            
+            if (email) {
+                message.textContent = 'Thank you for subscribing!';
+                message.style.color = 'white';
+                document.getElementById('email').value = '';
+            } else {
+                message.textContent = 'Please enter a valid email!';
+                message.style.color = 'yellow';
+            }
+        });
+    </script>
+
+</body>
+</html>

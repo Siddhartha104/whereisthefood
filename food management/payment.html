@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <style>
+        /* Global Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* Body Styling */
+        body { font-family: Arial, sans-serif; background-color: #f9f9f9; display: flex; justify-content: center; align-items: center; height: 100vh; }
+
+        header { background-color: #a0522d; color: white; padding: 20px; text-align: center; width: 100%; }
+
+        /* Payment Form Container */
+        .container { 
+            max-width: 600px; 
+            width: 100%; 
+            padding: 30px; 
+            background: white; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+            margin-top: 20px;
+        }
+
+        h1 { font-size: 2.2em; color: #333; margin-bottom: 20px; }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            margin-top: 5px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            border-color: #a0522d;
+            background-color: #fff;
+        }
+
+        .payment-method-icons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+        }
+
+        .payment-method-icons img {
+            width: 40px;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .payment-method-icons img:hover {
+            transform: scale(1.1);
+        }
+
+        .btn {
+            background-color: #a0522d;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background-color: #8b4513;
+        }
+
+        /* Popup Styling */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #4CAF50;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 1.2em;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .popup.show {
+            display: block;
+        }
+
+        /* Loader */
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #a0522d;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 2s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Payment Details</h1>
+    </header>
+
+    <!-- Payment Form -->
+    <div class="container">
+        <form id="paymentForm">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" required placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" id="address" required placeholder="Enter your address">
+            </div>
+            <div class="form-group">
+                <label for="payment-method">Payment Method</label>
+                <select id="payment-method" required>
+                    <option value="credit">Credit Card</option>
+                    <option value="debit">Debit Card</option>
+                    <option value="paypal">PayPal</option>
+                </select>
+            </div>
+            <div id="card-details" class="form-group" style="display: none;">
+                <label for="card-number">Card Number</label>
+                <input type="text" id="card-number" placeholder="Enter your card number" maxlength="19">
+                <label for="expiry-date">Expiry Date</label>
+                <input type="text" id="expiry-date" placeholder="MM/YY" maxlength="5">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" placeholder="Enter CVV" maxlength="3">
+            </div>
+            <div class="payment-method-icons">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Visa.svg" alt="Visa" id="visa" onclick="selectPaymentMethod('credit')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.svg" alt="Mastercard" id="mastercard" onclick="selectPaymentMethod('credit')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/PayPal_logo_2014.svg" alt="PayPal" id="paypal" onclick="selectPaymentMethod('paypal')">
+            </div>
+            <button type="button" class="btn" onclick="submitPayment()">Submit Payment</button>
+        </form>
+    </div>
+
+    <!-- Success Popup -->
+    <div class="popup" id="paymentPopup">
+        <p>Payment Successful!</p>
+    </div>
+
+    <!-- Loader (hidden by default) -->
+    <div id="loader" class="loader" style="display: none;"></div>
+
+    <script>
+        // Show/hide card details based on payment method selection
+        function selectPaymentMethod(method) {
+            if (method === 'paypal') {
+                document.getElementById("card-details").style.display = "none";
+            } else {
+                document.getElementById("card-details").style.display = "block";
+            }
+        }
+
+        // Simulate payment submission and show a loader
+        function submitPayment() {
+            const loader = document.getElementById("loader");
+            const popup = document.getElementById("paymentPopup");
+
+            // Show loader during payment processing
+            loader.style.display = "block";
+            setTimeout(() => {
+                loader.style.display = "none";
+                popup.classList.add("show");
+                setTimeout(() => popup.classList.remove("show"), 2000);
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

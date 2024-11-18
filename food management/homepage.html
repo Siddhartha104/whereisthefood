@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where is My Food - Home</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #FFAFBD, #ffc3a0);
+        }
+
+        .home-container {
+            text-align: center;
+            background: #fff;
+            padding: 3em;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.5s ease;
+            width: 300px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 0.5em;
+            font-size: 2em;
+        }
+
+        p {
+            color: #666;
+            font-size: 1em;
+            margin-bottom: 1.5em;
+        }
+
+        .login-btn {
+            background: #36d1dc;
+            color: #fff;
+            padding: 0.8em 1.5em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            transition: background 0.3s;
+            text-decoration: none;
+        }
+
+        .login-btn:hover {
+            background: #5b86e5;
+        }
+
+        .login-btn:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="home-container">
+        <h1>Where is My Food</h1>
+        <p>Your favorite food trucks, just a click away!</p>
+        <a href="login.html" class="login-btn">Login</a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const container = document.querySelector(".home-container");
+            const loginBtn = document.querySelector(".login-btn");
+
+            // Add scaling and rotation animation on hover for the container
+            container.addEventListener("mouseenter", () => {
+                container.style.transition = "transform 0.4s ease";
+                container.style.transform = "scale(1.05) rotate(2deg)";
+            });
+
+            container.addEventListener("mouseleave", () => {
+                container.style.transform = "scale(1) rotate(0deg)";
+            });
+
+            // Add pulsing animation for the login button on hover
+            loginBtn.addEventListener("mouseenter", () => {
+                loginBtn.style.transition = "transform 0.3s ease";
+                loginBtn.style.transform = "scale(1.1)";
+            });
+
+            loginBtn.addEventListener("mouseleave", () => {
+                loginBtn.style.transform = "scale(1)";
+            });
+
+            // Add a click animation for the login button
+            loginBtn.addEventListener("click", () => {
+                loginBtn.style.transform = "scale(0.95)";
+                setTimeout(() => {
+                    loginBtn.style.transform = "scale(1)";
+                }, 150);
+            });
+        });
+    </script>
+
+</body>
+</html>
